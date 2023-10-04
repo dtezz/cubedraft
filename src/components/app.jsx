@@ -1,7 +1,18 @@
-import React, { Component } from 'react';
+import React, { Component, useState } from 'react';
+// import Card from './cards.jsx';
+import Search from './search.jsx';
 
 const App = () => {
-  return <h1>Welcome to my site!</h1>;
+  // const [card, setCard] = useState({});
+
+  return (
+    <div>
+      <h1>Welcome to my trash!</h1>
+      <div>
+        <Search />
+      </div>
+    </div>
+  );
 };
 
 export default App;

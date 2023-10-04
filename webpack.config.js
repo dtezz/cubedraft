@@ -1,22 +1,21 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-// const CopyPlugin = require('copy-webpack-plugin');
 
 module.exports = {
   entry: './src/index.js',
-  mode: 'development',
+  mode: process.env.NODE_ENV,
   plugins: [
     new HtmlWebpackPlugin({
       template: path.resolve('./src/index.html'),
     }),
-    // new CopyPlugin({
-    //   patterns: [{ from: './src/style.css' }],
-    // }),
   ],
   devServer: {
     static: {
       publicPath: './build',
       directory: path.resolve(__dirname, 'build'),
+    },
+    proxy: {
+      '/': 'http://localhost:3000',
     },
   },
   module: {
