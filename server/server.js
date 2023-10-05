@@ -1,9 +1,20 @@
 const express = require('express');
 const app = express();
 const path = require('path');
+const cookieParser = require('cookie-parser');
+const mongoose = require('mongoose');
+require('dotenv').config();
 const PORT = 3000;
 
+const userController = require('./controllers/userController.js');
+const sessionController = require('./controllers/sessionController.js');
+const cookieController = require('./controllers/cookieController.js');
+
+mongoose.connect(process.env.MONGO_URI);
+
 app.use(express.json());
+app.use(express.urlencoded());
+app.use(cookieParser());
 
 if (process.env.NODE_ENV === 'production') {
   app.use('/build', express.static(path.join(__dirname, '../build')));
@@ -14,6 +25,16 @@ if (process.env.NODE_ENV === 'production') {
       .sendFile(path.join(__dirname, '../build/index.html'));
   });
 }
+
+app.post(
+  '/signup',
+  userController.createUser,
+  cookieController.setSSIDCookie,
+  sessionController.startSession,
+  (req, res) => {
+    return res.sendStatus(201);
+  }
+);
 
 app.use((err, req, res, next) => {
   const defaultErr = {

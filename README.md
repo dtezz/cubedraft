@@ -16,4 +16,13 @@ Goals:
 
 Current State:
 
-10-4-23 front-end application that uses scryfall api to search for card based on user input and returns a single card image
+10-4-23
+
+- front-end application that uses scryfall api to search for card based on user input and returns a single card image
+- now with a random button!
+
+WIP
+
+- working on user signup/login
+- allow user to add card to favorites
+- allow user to see their list of favorites
