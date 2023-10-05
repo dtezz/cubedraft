@@ -1,5 +1,4 @@
 import React, { Component, useState } from 'react';
-// import Card from './cards.jsx';
 import Search from './search.jsx';
 
 const App = () => {
@@ -7,7 +6,8 @@ const App = () => {
 
   return (
     <div>
-      <h1>Welcome to my trash!</h1>
+      <h1>MTG Cube Refining</h1>
+      <h2>(current status: a simple card search engine)</h2>
       <div>
         <Search />
       </div>

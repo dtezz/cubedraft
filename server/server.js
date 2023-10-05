@@ -3,8 +3,6 @@ const app = express();
 const path = require('path');
 const PORT = 3000;
 
-const cardRouter = require('./routes/cards.js');
-
 app.use(express.json());
 
 if (process.env.NODE_ENV === 'production') {
@@ -17,9 +15,6 @@ if (process.env.NODE_ENV === 'production') {
   });
 }
 
-app.use('/cards', cardRouter);
-
-// app.use('*', (req, res) => {
 //   return res.status(404).send("This site don't exist foo!");
 // });
 
