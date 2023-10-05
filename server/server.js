@@ -15,9 +15,6 @@ if (process.env.NODE_ENV === 'production') {
   });
 }
 
-//   return res.status(404).send("This site don't exist foo!");
-// });
-
 app.use((err, req, res, next) => {
   const defaultErr = {
     log: 'Express error handler caught unknown middleware error',
