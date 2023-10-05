@@ -31,6 +31,13 @@ userController.createUser = async (req, res, next) => {
 userController.verifyUser = async (req, res, next) => {
   // write code here
   const { username, password } = req.body;
+  if (!username || !password) {
+    return next({
+      log: 'Missing username or password in userController.createUser',
+      status: 400,
+      messgae: { err: 'username and password required' },
+    });
+  }
   // console.log(username, password);
   try {
     const user = await User.find({ username: username });

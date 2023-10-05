@@ -9,6 +9,10 @@ const Search = (props) => {
     e.preventDefault();
     if (e.target.id === 'search') {
       const name = e.target[0].value;
+      if (name === '') {
+        alert('you gotta put in a name!');
+        return;
+      }
       try {
         let data = await fetch(
           `https://api.scryfall.com/cards/named?fuzzy=${name}`

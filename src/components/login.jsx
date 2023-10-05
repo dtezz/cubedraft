@@ -1,7 +1,8 @@
 import React from 'react';
 
 const Login = (props) => {
-  const submit = (e) => {
+  let count = 0;
+  const submit = async (e) => {
     e.preventDefault();
     const id = e.target.id;
     let body = {};
@@ -9,21 +10,35 @@ const Login = (props) => {
       body.username = e.target[0].value;
       body.password = e.target[1].value;
       body = JSON.stringify(body);
-      fetch('/signup', {
+      const response = await fetch('/signup', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: body,
       });
+      if (response.status === 400) {
+        alert('gotta have a username and password!');
+      }
       e.target.reset();
     } else if (id === 'login') {
       body.username = e.target[0].value;
       body.password = e.target[1].value;
       body = JSON.stringify(body);
-      fetch('/login', {
+      const response = await fetch('/login', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: body,
       });
+      if (response.status === 400) {
+        alert('gotta have a username and password! come on!');
+      } else if (response.status === 401) {
+        if (count >= 3) {
+          alert(
+            "take a break and try again later, I'm sure you'll remember then"
+          );
+        }
+        alert('incorrect username or password');
+        count++;
+      }
       e.target.reset();
     }
   };
