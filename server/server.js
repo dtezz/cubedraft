@@ -32,9 +32,23 @@ app.post(
   cookieController.setSSIDCookie,
   sessionController.startSession,
   (req, res) => {
-    return res.sendStatus(201);
+    return res.status(201).send('it works!');
   }
 );
+
+app.post(
+  '/login',
+  userController.verifyUser,
+  cookieController.setSSIDCookie,
+  sessionController.startSession,
+  (req, res) => {
+    return res.status(202).send('it works!');
+  }
+);
+
+// app.get('*', (req, res) => {
+//   return res.redirect('/');
+// });
 
 app.use((err, req, res, next) => {
   const defaultErr = {
