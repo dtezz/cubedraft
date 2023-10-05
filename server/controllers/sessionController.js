@@ -2,16 +2,16 @@ const Session = require('../models/sessionModel');
 
 const sessionController = {};
 
-sessionController.startSession = (req, res, next) => {
+sessionController.startSession = async (req, res, next) => {
   try {
     // get the unique id from the create user middleware function
     const id = res.locals.userId;
-
-    // use session.create to add a session document to the session collection
-    Session.create({ cookieId: id }).then((data) => {
-      // console.log('Session Created: ', data);
-      next();
-    });
+    const session = await Session.find({ cookieId: req.cookies.ssid });
+    if (!session.length) {
+      const newSession = await Session.create({ cookieId: id });
+    } else {
+      return next();
+    }
   } catch (err) {
     next(err);
   }

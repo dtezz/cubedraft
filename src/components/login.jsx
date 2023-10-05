@@ -15,6 +15,9 @@ const Login = (props) => {
         headers: { 'Content-Type': 'application/json' },
         body: body,
       });
+      if (response.status === 201) {
+        alert('welcome to the club');
+      }
       if (response.status === 400) {
         alert('gotta have a username and password!');
       }
@@ -28,6 +31,9 @@ const Login = (props) => {
         headers: { 'Content-Type': 'application/json' },
         body: body,
       });
+      if (response.status === 202) {
+        alert("you're in");
+      }
       if (response.status === 400) {
         alert('gotta have a username and password! come on!');
       } else if (response.status === 401) {
