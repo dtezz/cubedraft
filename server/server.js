@@ -46,6 +46,24 @@ app.post(
   }
 );
 
+app.get(
+  '/favorites',
+  sessionController.isLoggedIn,
+  userController.getFavorites,
+  (req, res) => {
+    return res.status(200).json(res.locals.favorites);
+  }
+);
+
+app.post(
+  '/favorites',
+  sessionController.isLoggedIn,
+  userController.updateFavorites,
+  (req, res) => {
+    return res.status(202).send('it works!');
+  }
+);
+
 // app.get('*', (req, res) => {
 //   return res.redirect('/');
 // });

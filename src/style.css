@@ -1,7 +1,43 @@
 h1 {
   font-size: 24;
+  display: flex;
+  justify-content: center;
+}
+
+h2 {
+  display: flex;
+  justify-content: center;
+}
+
+h3 {
+  display: flex;
+  justify-content: center;
 }
 
 body {
   background: rgb(167, 103, 103);
+}
+
+#root {
+  display: flex;
+  justify-content: center;
+}
+
+img {
+  padding: 10px;
+}
+
+button {
+  padding: 5px;
+  margin: 3px;
+}
+
+form {
+  margin: 5px;
+  padding: 5px;
+  justify-content: space-between;
+}
+
+input {
+  padding: 5px;
 }
